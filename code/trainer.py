@@ -21,7 +21,9 @@ from miscc.utils import KL_loss
 from miscc.utils import compute_discriminator_loss, compute_generator_loss
 
 from tensorboard import summary
-from tensorboard import FileWriter
+# 23/10/2023
+# from tensorboard import FileWriter # python 2.7
+from tensorboardX import SummaryWriter # python 3
 
 
 class GANTrainer(object):
@@ -33,7 +35,9 @@ class GANTrainer(object):
             mkdir_p(self.model_dir)
             mkdir_p(self.image_dir)
             mkdir_p(self.log_dir)
-            self.summary_writer = FileWriter(self.log_dir)
+            # 23/10/2023
+            self.summary_writer = SummaryWriter(self.log_dir)
+            # self.summary_writer = FileWriter(self.log_dir)
 
         self.max_epoch = cfg.TRAIN.MAX_EPOCH
         self.snapshot_interval = cfg.TRAIN.SNAPSHOT_INTERVAL

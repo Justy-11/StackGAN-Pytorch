@@ -61,9 +61,13 @@ def _merge_a_into_b(a, b):
     if type(a) is not edict:
         return
 
-    for k, v in a.iteritems():
+    # for k, v in a.iteritems(): # python 2.7
+    # for python 3 ->
+    for k, v in a.items():
         # a must specify keys that are in b
-        if not b.has_key(k):
+        # if not b.has_key(k): # python 2.7
+        # for python 3 ->
+        if k not in b:
             raise KeyError('{} is not a valid config key'.format(k))
 
         # the types must match, too
@@ -91,6 +95,8 @@ def cfg_from_file(filename):
     """Load a config file and merge it into the default options."""
     import yaml
     with open(filename, 'r') as f:
-        yaml_cfg = edict(yaml.load(f))
+        # yaml_cfg = edict(yaml.load(f)) # python 2.7
+        # for python 3 ->
+        yaml_cfg = edict(yaml.load(f, Loader=yaml.FullLoader))
 
     _merge_a_into_b(yaml_cfg, __C)

@@ -1,5 +1,5 @@
 # Reproduce StackGAN-pytorch
-Run the Reproduce_stackGAN.ipynb file inside the Reproduce directory
+- Run the Reproduce_stackGAN.ipynb file inside the Reproduce directory in Google colab (Run all)
 
 # StackGAN-pytorch
 - [Tensorflow implementation](https://github.com/hanzhanggit/StackGAN)

@@ -1,3 +1,6 @@
+# Reproduce StackGAN-pytorch
+Run the Reproduce_stackGAN.ipynb file inside the Reproduce directory
+
 # StackGAN-pytorch
 - [Tensorflow implementation](https://github.com/hanzhanggit/StackGAN)
 

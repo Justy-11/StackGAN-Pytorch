@@ -1,5 +1,7 @@
 # Reproduce StackGAN-pytorch
 - Run the Reproduce_stackGAN.ipynb file inside the Reproduce directory in Google colab (Run all)
+- python version - 3.10
+- torch version - 2.0
 
 # StackGAN-pytorch
 - [Tensorflow implementation](https://github.com/hanzhanggit/StackGAN)

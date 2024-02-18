@@ -2,6 +2,9 @@
 - Run the Reproduce_stackGAN.ipynb file inside the Reproduce directory in Google colab (Run all)
 - python version - 3.10
 - torch version - 2.0
+- birds metadata from: https://drive.google.com/file/d/1O_LtUP9sch09QH3s_EBAgLEctBQ5JBSJ/view and add it to ../data/
+- birds image data from: https://data.caltech.edu/records/65de6-vp158/files/CUB_200_2011.tgz?download=1 and add it to ../data/birds/
+- char-CNN-RNN text embeddings for birds from : https://drive.google.com/file/d/0B3y_msrWZaXLT1BZdVdycDY5TEE/view?resourcekey=0-sZrhftoEfdvHq6MweAeCjA and extract it and get char-CNN-RNN-embeddings.pickle, add it to ../data/birds/train/
 
 # StackGAN-pytorch
 - [Tensorflow implementation](https://github.com/hanzhanggit/StackGAN)

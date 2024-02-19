@@ -199,19 +199,30 @@ class GANTrainer(object):
 
                 count = count + 1
                 if i % 100 == 0:
-                    summary_D = summary.scalar('D_loss', errD.data[0])
+                    # 19/2/24
+                    # summary_D = summary.scalar('D_loss', errD.data[0])
+                    summary_D = summary.scalar('D_loss', errD.item())
                     summary_D_r = summary.scalar('D_loss_real', errD_real)
                     summary_D_w = summary.scalar('D_loss_wrong', errD_wrong)
                     summary_D_f = summary.scalar('D_loss_fake', errD_fake)
-                    summary_G = summary.scalar('G_loss', errG.data[0])
-                    summary_KL = summary.scalar('KL_loss', kl_loss.data[0])
+                    # summary_G = summary.scalar('G_loss', errG.data[0])
+                    summary_G = summary.scalar('G_loss', errG.item())
+                    # summary_KL = summary.scalar('KL_loss', kl_loss.data[0])
+                    summary_KL = summary.scalar('KL_loss', kl_loss.item())
 
-                    self.summary_writer.add_summary(summary_D, count)
-                    self.summary_writer.add_summary(summary_D_r, count)
-                    self.summary_writer.add_summary(summary_D_w, count)
-                    self.summary_writer.add_summary(summary_D_f, count)
-                    self.summary_writer.add_summary(summary_G, count)
-                    self.summary_writer.add_summary(summary_KL, count)
+                    # 19/2/24
+                    # self.summary_writer.add_summary(summary_D, count)
+                    # self.summary_writer.add_summary(summary_D_r, count)
+                    # self.summary_writer.add_summary(summary_D_w, count)
+                    # self.summary_writer.add_summary(summary_D_f, count)
+                    # self.summary_writer.add_summary(summary_G, count)
+                    # self.summary_writer.add_summary(summary_KL, count)
+                    self.summary_writer.add_scalar(summary_D, count)
+                    self.summary_writer.add_scalar(summary_D_r, count)
+                    self.summary_writer.add_scalar(summary_D_w, count)
+                    self.summary_writer.add_scalar(summary_D_f, count)
+                    self.summary_writer.add_scalar(summary_G, count)
+                    self.summary_writer.add_scalar(summary_KL, count)
 
                     # save the image result for each epoch
                     inputs = (txt_embedding, fixed_noise)

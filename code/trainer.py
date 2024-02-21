@@ -20,7 +20,8 @@ from miscc.utils import save_img_results, save_model
 from miscc.utils import KL_loss
 from miscc.utils import compute_discriminator_loss, compute_generator_loss
 
-from tensorboard import summary
+# 21/02/2024
+# from tensorboard import summary
 # 23/10/2023
 # from tensorboard import FileWriter # python 2.7
 from tensorboardX import SummaryWriter # python 3
@@ -36,7 +37,7 @@ class GANTrainer(object):
             mkdir_p(self.image_dir)
             mkdir_p(self.log_dir)
             # 23/10/2023
-            self.summary_writer = SummaryWriter(self.log_dir)
+            # self.summary_writer = SummaryWriter(self.log_dir)
             # self.summary_writer = FileWriter(self.log_dir)
 
         self.max_epoch = cfg.TRAIN.MAX_EPOCH
@@ -201,28 +202,29 @@ class GANTrainer(object):
                 if i % 100 == 0:
                     # 19/2/24
                     # summary_D = summary.scalar('D_loss', errD.data[0])
-                    summary_D = summary.scalar('D_loss', errD.item())
-                    summary_D_r = summary.scalar('D_loss_real', errD_real)
-                    summary_D_w = summary.scalar('D_loss_wrong', errD_wrong)
-                    summary_D_f = summary.scalar('D_loss_fake', errD_fake)
-                    # summary_G = summary.scalar('G_loss', errG.data[0])
-                    summary_G = summary.scalar('G_loss', errG.item())
-                    # summary_KL = summary.scalar('KL_loss', kl_loss.data[0])
-                    summary_KL = summary.scalar('KL_loss', kl_loss.item())
+                    # summary_D = summary.scalar('D_loss', errD.item())
+                    # summary_D_r = summary.scalar('D_loss_real', errD_real)
+                    # summary_D_w = summary.scalar('D_loss_wrong', errD_wrong)
+                    # summary_D_f = summary.scalar('D_loss_fake', errD_fake)
+                    # # summary_G = summary.scalar('G_loss', errG.data[0])
+                    # summary_G = summary.scalar('G_loss', errG.item())
+                    # # summary_KL = summary.scalar('KL_loss', kl_loss.data[0])
+                    # summary_KL = summary.scalar('KL_loss', kl_loss.item())
 
-                    # 19/2/24
+                    # # 19/2/24
                     # self.summary_writer.add_summary(summary_D, count)
                     # self.summary_writer.add_summary(summary_D_r, count)
                     # self.summary_writer.add_summary(summary_D_w, count)
                     # self.summary_writer.add_summary(summary_D_f, count)
                     # self.summary_writer.add_summary(summary_G, count)
                     # self.summary_writer.add_summary(summary_KL, count)
-                    self.summary_writer.add_scalar(summary_D, count)
-                    self.summary_writer.add_scalar(summary_D_r, count)
-                    self.summary_writer.add_scalar(summary_D_w, count)
-                    self.summary_writer.add_scalar(summary_D_f, count)
-                    self.summary_writer.add_scalar(summary_G, count)
-                    self.summary_writer.add_scalar(summary_KL, count)
+                    
+                    # self.summary_writer.add_scalar(summary_D, count)
+                    # self.summary_writer.add_scalar(summary_D_r, count)
+                    # self.summary_writer.add_scalar(summary_D_w, count)
+                    # self.summary_writer.add_scalar(summary_D_f, count)
+                    # self.summary_writer.add_scalar(summary_G, count)
+                    # self.summary_writer.add_scalar(summary_KL, count)
 
                     # save the image result for each epoch
                     inputs = (txt_embedding, fixed_noise)
@@ -244,7 +246,7 @@ class GANTrainer(object):
         #
         save_model(netG, netD, self.max_epoch, self.model_dir)
         #
-        self.summary_writer.close()
+        # self.summary_writer.close()
 
     def sample(self, datapath, stage=1):
         if stage == 1:

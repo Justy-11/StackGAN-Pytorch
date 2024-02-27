@@ -180,7 +180,7 @@ for _class in sorted(os.listdir(embedding_path)):
 
         data_path = os.path.join(embedding_path, _class)
         txt_path = os.path.join(text_path, _class)
-        for example, txt_file in zip(sorted(glob(data_path + "/*.t7")), sorted(glob(txt_path + "/*.txt"))):
+        for example, txt_file in zip(sorted(glob(data_path + "/*.pickle")), sorted(glob(txt_path + "/*.txt"))):
             # for example in sorted(glob(data_path + "/*.t7")):
 
             # f = open(txt_file, "r")
@@ -194,14 +194,17 @@ for _class in sorted(os.listdir(embedding_path)):
 
             # if len(doc) <= 35:
             # if True:
+            with open(example, 'rb') as emb_f:
+                example_data = pickle.load(emb_f)
+    
+            embeddings.append(np.mean(example_data, axis=0))
+            
             paths.append(os.path.join(
                 'birds/CUB_200_2011/images', example.split('/')[-2], example.split('/')[-1][:-3] + '.jpg'))
-            example_data = torchfile.load(example)
+            # paths.append(os.path.join('birds/CUB_200_2011/images', _class, os.path.basename(example_file)[:-7] + '.jpg'))
 
             # embeddings.append(
             #     np.array(example_data[b'txt']).ravel())
-            embeddings.append(
-                np.mean(np.array(example_data[b'txt']), axis=0))
 
         coreset = Coreset_Greedy(embeddings)
         temp = coreset.sample(0.25)

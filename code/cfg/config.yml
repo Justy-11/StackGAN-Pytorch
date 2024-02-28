@@ -1,10 +1,9 @@
 # Birds CUB dataset
 birds_images_path: '/data/birds/CUB_200_2011/images'
 birds_embedding_path: '/data/birds/train/char-CNN-RNN-embeddings.pickle'
-birds_text_path: '/data/birds/text_c10/'
+birds_text_path: '/data/birds/text/'
 
-birds_val_split_path: '/data/birds/valclasses.txt'
-birds_train_split_path: '/data/birds/trainclasses.txt'
-birds_test_split_path: '/data/birds/testclasses.txt'
+birds_train_split_path: '/data/birds/train/'
+birds_test_split_path: '/data/birds/test/'
 
 birds_coreset_path: '/data/birds/birds_10.txt'

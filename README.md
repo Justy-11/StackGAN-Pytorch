@@ -1,10 +1,18 @@
-# Reproduce StackGAN-pytorch
+# Reproduce and Enhance StackGAN-pytorch
 - Run the Reproduce_stackGAN.ipynb file inside the Reproduce directory in Google colab (Run all)
 - python version - 3.10
 - torch version - 2.0
 - birds metadata from: https://drive.google.com/file/d/1O_LtUP9sch09QH3s_EBAgLEctBQ5JBSJ/view and add it to `../data/`
 - birds image data from: https://data.caltech.edu/records/65de6-vp158/files/CUB_200_2011.tgz?download=1 and add it to `../data/birds/`
 - char-CNN-RNN text embeddings for birds from : https://drive.google.com/file/d/0B3y_msrWZaXLT1BZdVdycDY5TEE/view?resourcekey=0-sZrhftoEfdvHq6MweAeCjA and extract it and get char-CNN-RNN-embeddings.pickle, add it to `../data/birds/train/`
+
+## Enhancing text-to-image synthesis using data-centric approaches with StackGAN 
+### Data-centric approaches and  process
+`Curriculum learning` - dataset is partitioned into easy and hard data using the KEYBERT model. Data with keywords exceeding a certain threshold are categorized as hard data, while the rest are labeled as easy data.
+
+`Coreset selection` - greedy approach is used. Initially, one text embedding is selected, followed by the selection of subsequent embeddings that are distant from the previously chosen one. This process iterates until 10% of the easy data and 50% of the hard data are selected.
+
+`Active learning` - GAN model is trained with 10% of the easy data for 50 epochs. Subsequently, the model predicts on 50% of the hard data. Among the predicted data, instances with higher discriminator loss are selected and appended to the initial 10% data. The GAN model is then retrained with this augmented dataset for 10 epochs. This process repeats until reaching 200 epochs.
 
 # StackGAN-pytorch
 - [Tensorflow implementation](https://github.com/hanzhanggit/StackGAN)
